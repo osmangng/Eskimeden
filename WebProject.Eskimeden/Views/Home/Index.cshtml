@@ -1,0 +1,25 @@
+﻿@using WebProject.Eskimeden.Models;
+@model IEnumerable<ProductModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-4">Eskimeden.com</h1>
+            <p class="lead">Hayallerinizi süsleyen eşyaları kaçırmayın. Tüm kategorilerimizi inceleyerek fırsatları yakalayın.</p>
+            <hr class="my-4">
+            <p>Kullanmadığınız eşyalarınız mı var? Atmaya kıyamıyor musunuz? Bizimle iletişime geçin, siz de bir başkasının hayallerinin gerçeğe dönüşmesine yardımcı olun. </p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Bize ulaşın</a>
+        </div>
+    </div>
+<div class="container pb-5">
+
+    @Html.Partial("_ProductList",Model)
+</div>
+
+
+

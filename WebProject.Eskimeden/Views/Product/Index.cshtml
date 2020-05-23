@@ -1,0 +1,93 @@
+﻿@model IEnumerable<WebProject.Eskimeden.Entity.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container pb-5">
+    <h2>Ürünler</h2>
+
+    <p>
+        @Html.ActionLink("Yeni Ürün Ekle", "Create",null,new {@class="btn btn-primary" })
+    </p>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsHome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsApproved)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td width="150px">
+               <img src="~/Upload/@item.Image" class="card-img-top" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td width="150px">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @if (item.IsHome == true)
+                {
+                    <label class="badge badge-success">
+                        <i class="fas fa-check-circle"> Evet</i>
+                    </label>
+                }
+                else
+                {
+                    <label class="badge badge-danger">
+                        <i class="fas fa-times-circle"> Hayır</i>
+                    </label>
+                    
+                }
+            </td>
+            <td>
+                @if (item.IsApproved == true)
+                {
+                    <label class="badge badge-success">
+                        <i class="fas fa-check-circle"> Evet</i>
+                    </label>
+
+                }
+                else
+                {
+                    <label class="badge badge-danger">
+                        <i class="fas fa-times-circle"> Hayır</i>
+                    </label>
+                }
+                </td>
+            <td style="width:150px">
+                <div>
+                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" })
+                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                </div>
+
+            </td>
+        </tr>
+        }
+
+    </table>
+</div>

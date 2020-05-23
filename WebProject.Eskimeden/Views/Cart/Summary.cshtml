@@ -1,0 +1,18 @@
+﻿@using WebProject.Eskimeden.Models
+@model Cart
+<style>
+    #cart
+    { 
+        color:white;
+     
+    }
+</style>
+<ul class="navbar-nav my-2 my-lg-0">
+    <li id="cart" class="nav-item active">
+
+        <a class="nav-link btn btn-default" href="/Cart/Index">
+                <i class="fas fa-shopping-basket" style="font-size: 24px;"></i>  (@Model.CartLines.Count())
+        </a>
+</li>
+
+</ul>

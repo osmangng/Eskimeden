@@ -1,0 +1,80 @@
+﻿@using WebProject.Eskimeden.Models
+@model Cart
+@{
+    ViewBag.Title = "Index";
+}
+
+
+  <h2 class="ml-3">Alışveriş Sepetiniz</h2>
+<hr />
+@if (Model.CartLines.Count >0)
+{
+    <div id="user-cart" class="container pb-5">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Miktar</th>
+                            <th>Ürün Adı</th>
+                            <th>Price</th>
+                            <th>Ara Toplam</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.CartLines)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/Upload/@item.Product.Image" width="50" />
+                                </td>
+                                <td>@item.Quantity</td>
+                                <td>@item.Product.Name</td>
+                                <td>@item.Product.Price</td>
+                                <td><i class="fas fa-lira-sign"></i> @((item.Product.Price * (item.Quantity)))</td>
+                                <td>
+                                    @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                                    {
+                                        @Html.Hidden("Id", item.Product.Id)
+                                        <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash-alt" aria-hidden="true"></i> Sepetten Kaldır</button>
+
+                                    }
+
+
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4"></td>
+                            <td>
+                                <i class="fas fa-lira-sign"></i> @Model.Total()
+                            </td>
+                        </tr>
+
+
+
+                    </tfoot>
+
+                </table>
+                <div class="text-center">
+                    <a href="~/Home/List" class="btn btn-primary"><i class="fas fa-arrow-left" style="font-size: 24px;"></i> Alışverişe Devam et</a>
+                    <a href="/Cart/Checkout" class="btn btn-secondary"><i class="fas fa-cash-register" style="font-size: 24px;"></i> Alışverişi Tammamla</a>
+                </div>
+               
+            </div>
+
+        </div>
+    </div>
+
+    
+}
+else
+{
+    <div class="alert alert-secondary" role="alert">
+        <i class="fas fa-exclamation" style="font-size: 48px;"></i> Sepetinizde Ürün bulunmuyor.
+    </div>
+}

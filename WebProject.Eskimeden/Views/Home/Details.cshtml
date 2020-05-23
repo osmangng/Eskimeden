@@ -1,0 +1,127 @@
+﻿@using WebProject.Eskimeden.Models;
+@model ProductModel
+@{
+    ViewBag.Title = "Details";
+}
+<div id="product-details" class="container pb-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="~/Upload/@Model.Image" class="img-fluid rounded w-100 mt-3">
+
+        </div>
+        <div class="col-md-6">
+            <div class="row mt-1">
+                <div class="col-md-12">
+                    <h1 class="mt-3">@Model.Name</h1>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @if (Model.IsApproved==true)
+                            {
+                                <span class="badge badge-primary">Satışta</span>
+                            }
+                            else{
+                                <span class="badge badge-error">Tükendi</span>
+                            }
+
+
+                            <p>@Model.Description</p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="badge badge-primary">Ürün Adedi:</span>
+                    <span class="badge">@Model.Stock</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="row">
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="badge badge-success">53</span>
+                        <div class="col-md-12" id="write-review">Yorum Yaz</div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="bad badge-error mt-3 mr-3" id="product-price"> <i class="fas fa-lira-sign"></i>@Model.Price </h4>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                @using (Html.BeginForm("AddToCart", "Cart"))
+                {
+                    @Html.HiddenFor(i=>i.Id)
+                    <button id="button-basket" class="btn btn-success mt-3">
+                        <i class="fas fa-shopping-basket" aria-hidden="true"></i>
+                        Sepete Ekle
+                    </button>
+                }
+
+
+
+            </div>
+        </div>
+        <hr class="blue">
+        <div class="col-md-12">
+
+            <div class="col-md-12 mt-3">
+                <div class="bd-example bd-example-tabs mt-3">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pills-description-tab" data-toggle="pill" href="#pills-description" role="tab" aria-controls="pills-home" aria-selected="true">Açıklama</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-payment" role="tab" aria-controls="pills-payment" aria-selected="false">Ödeme Yöntemleri</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-comment" role="tab" aria-controls="pills-comment" aria-selected="false">Yorumlar</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade active show" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
+                            <p>Ödeme yöntemleri ve yorumlara ulaşabilirsiniz. Eskimeden.com, sizlere en uygun fiyat ve ödeme seçenekleri ile yüzlerce ürün sunar.</p>
+                        </div>
+
+                        <div class="tab-pane fade" id="pills-payment" role="tabpanel" aria-labelledby="pills-payment-tab">
+                            <p>
+                                Ödeme Seçenekleri
+                                VISA/MASTERCARD Tek Çekim
+                                Bonus card, Ziraat Bankası, Maximum kartlara 4 taksit, diğer kartlara 3 taksit fırsatı
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="pills-comment" role="tabpanel" aria-labelledby="pills-comment-tab">
+                            <p>
+                                İletişim
+                                0850 712 01 44 / iletisim@eskimeden.com
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

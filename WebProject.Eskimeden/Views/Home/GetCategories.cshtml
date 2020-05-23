@@ -1,0 +1,60 @@
+﻿@using WebProject.Eskimeden.Entity;
+@model List<Category>
+@{ 
+    var selectedCategoryId = Url.RequestContext.RouteData.Values["id"];
+}
+
+<div class="col-md-3 mt-3">
+    
+        
+            @if (selectedCategoryId == null)
+            {
+                <a class="list-group-item active" href="/Home/List">
+                    <i class="fa fa-angle-double-right">Tüm Ürünler</i>
+                </a>
+
+            }
+            else
+            {
+                <a class="list-group-item" href="/Home/List">
+                    <i class="fa fa-angle-double-right">Tüm Ürünler</i>
+                </a>
+            }
+
+        
+        @foreach (var cate in Model)
+        {
+            if (selectedCategoryId != null)
+            {
+                if (cate.Id == int.Parse(selectedCategoryId.ToString()))
+                {
+                    
+                <a class="list-group-item active" href="/Home/List/@cate.Id"><i class="fa fa-angle-double-right">@cate.Name</i></a>
+                    
+                    
+
+                }
+                else
+                {
+                   
+
+                        
+                            <a class="list-group-item" href="/Home/List/@cate.Id"><i class="fa fa-angle-double-right">@cate.Name</i></a>
+                        
+                    
+
+                }
+
+            }
+            else
+            {
+                
+                            <a class="list-group-item" href="/Home/List/@cate.Id"><i class="fa fa-angle-double-right">@cate.Name</i></a>
+                
+
+            }
+
+
+        }
+    
+</div>
